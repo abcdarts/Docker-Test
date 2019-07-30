@@ -1,8 +1,13 @@
 version: '3'
 services:
-  nginx:
+  db:
+    image: mysql
+  web:
     build: .
-    ports:
-      - "8080:80"
+    command: python¥3 manage.py runserver 0.0.0.0.8080
     volumes:
-      - ./public:/usr/share/nginx/html
+      - .:/app
+    posts:
+      - "8080:80"
+    depends_on:
+      - db
